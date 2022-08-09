@@ -1,0 +1,60 @@
+<%- include('./partials/header'); %>
+
+ <div class="card">
+
+  <div class="card-header">
+
+    <h1 class="card-title"><i class="fa-solid fa-book mr-2"></i>Livros</h1>
+
+  </div>
+
+  <div class="card-body p-0">
+
+    <a href="/dashboard/books/new" class="btn btn-sm btn-primary d-block m-0" style="border-radius: 0;">Novo Livro</a>
+
+  </div>
+
+  <div class="card-footer p-0">
+
+    <table class="table table-striped m-0">
+      <thead>
+        <tr>
+          <th scope="col-1">#</th>
+          <th scope="col">Título</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Vendas</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <% books.forEach((book) => { %>
+
+          <tr>
+            <th scope="row"><%= book.id %></th>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td><strong>R$ </strong> <%= String(book.valuee).replace('.', ',') %></td>
+            <td><b>x</b>und.</td>
+            <td>
+  
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-sm btn-success" style="border-radius: 0;"><i class="fa-solid fa-eye"></i></button>
+                <button type="button" class="btn btn-sm btn-warning" style="border-radius: 0;"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" class="btn btn-sm btn-danger" style="border-radius: 0;"><i class="fa-solid fa-trash"></i></button>
+              </div>
+  
+            </td>
+          </tr>
+
+        <% }); %>
+
+      </tbody>
+    </table>
+
+  </div>
+
+ </div>
+
+<%- include('./partials/footer'); %>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+   <!-- Google Font: Source Sans Pro -->
+   <link rel="stylesheet" href="/css/adminlte.min.css">
+
+   <link rel="stylesheet" href="/css/style.css">
+   <script src="https://kit.fontawesome.com/5677bce83e.js" crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" href="./css/login.css" /> -->
+    <title>AluraBooks</title>
+  </head>
+
+  <body class="hold-transition login-page">
+
+    <% if (alert) { %>
+
+      <% if (type === 'success') { %>
+
+        <div class="alert alert-success" role="alert">
+          <strong>Eba!</strong> <%= msgContent %>
+        </div>
+
+      <% } else { %>
+
+        <div class="alert alert-danger" role="alert">
+          <strong>Opa!</strong> <%= msgContent %>
+        </div>
+
+      <% } %>
+
+    <% } %>
+
+      <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary" style="border-color: #11998e;">
+          <div class="card-header text-center">
+            <img src="img/logo.svg" alt="" style="height:40px; border-radius: 50%;">
+            <h1><span style="font-weight: bold;">Alura</span><span style="font-weight: lighter;">Books</span></h1>
+          </div>
+          <div class="card-body">
+           

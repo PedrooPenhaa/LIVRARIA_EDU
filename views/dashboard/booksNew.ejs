@@ -1,0 +1,62 @@
+<%- include('./partials/header'); %>
+
+ <div class="card">
+
+  <div class="card-header">
+
+    <h1 class="card-title"><i class="fa-solid fa-plus mr-2"></i>Novo Livro</h1>
+
+  </div>
+
+  <div class="card-body">
+
+    <form action="/dashboard/books/new" method="POST" class="form">
+
+      <label for="title">Título</label>
+      <input type="text" class="form-control mb-3" id="title" name="title" placeholder="Harry Potter">
+
+      <label for="author">Autor</label>
+      <input type="text" class="form-control mb-3" id="author" name="author" placeholder="Malaquinhas Mouse">
+
+      <label for="cape">Capa(url)</label>
+      <input type="text" class="form-control mb-3" id="cape" name="cape" placeholder="http://imagem.com/imagem.jpg">
+
+      <label for="valuee">Valor</label>
+      <input type="text" class="form-control mb-3" id="valuee" name="valuee" pattern="^\d*(\.\d{0,2})?$" placeholder="100.00">
+
+      <label for="description">Descrição</label>
+      <textarea class="form-control mb-3" id="description" name="description" placeholder="descrição"></textarea>
+
+      <label for="visible">Visível: </label>
+      <input type="checkbox" class="mb-3" id="visible" name="visible" checked>
+
+      <button type="submit" class="btn btn-success btn-sm btn-block">Cadastrar!</button>
+
+    </form>
+
+  </div>
+
+ </div>
+
+ <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+ <script>
+
+  $(document).on('keydown', 'input[pattern]', function(e){
+    var input = $(this);
+    var oldVal = input.val();
+    var regex = new RegExp(input.attr('pattern'), 'g');
+  
+    setTimeout(function(){
+      var newVal = input.val();
+      if(!regex.test(newVal)){
+        input.val(oldVal); 
+      }
+    }, 1);
+  });
+
+ </script>
+
+<%- include('./partials/footer'); %>

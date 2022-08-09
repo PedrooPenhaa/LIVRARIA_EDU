@@ -1,0 +1,67 @@
+<%- include('./partials/headerLogRes'); %>
+  <div class="content">
+
+
+
+    <section id="container">
+      <form action="/register" method="POST">
+
+        <div class="form__group field">
+          <div class="input-group mb-3">
+            <input type="input" class="form-control" placeholder="Nome" name="namee" id='login_Field' required />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fa-solid fa-signature"></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form__group field">
+
+          <div class="input-group mb-3">
+            <input type="input" class="form-control" placeholder="Email" name="email" id='login_Field' required />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="form__group field">
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="password" name="password" id='login_Field'
+              required />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fa-solid fa-lock"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form__group field">
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Retype Password" name="retypePassword"
+              id='login_Field' required />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fa-solid fa-lock"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-primary btn-block"
+            style="background-color: #11998e; border-color: #11998e;"><i class="fa-solid fa-user-plus mr-2"></i>Registrar</button>
+        </div>
+
+      </form>
+    </section>
+  </div>
+
+  <%- include('./partials/footerLogRes'); %>

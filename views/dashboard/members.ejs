@@ -1,0 +1,88 @@
+<%- include('./partials/header'); %>
+
+ <div class="card">
+
+  <div class="card-header">
+
+    <h1 class="card-title"><i class="fa-solid fa-book mr-2"></i>Livros</h1>
+
+  </div>
+
+  <div class="card-body p-0">
+
+    <form  method="POST" action="#" class="form m-0">
+
+      
+
+      <select style="border-radius: 0;" class="form-control mb-3">
+
+        <option value="" selected>nome</option>
+        <option value="">email</option>
+
+      </select>
+
+      <div class="input-group">
+        <input style="border-radius: 0;" type="text" class="form-control" placeholder="Nome || Email" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button style="border-radius: 0;" class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="card-footer p-0">
+
+    <table class="table table-striped m-0">
+      <thead>
+        <tr>
+          <th scope="col" class="col-1">#</th>
+          <th scope="col" class="col-2">Nome</th>
+          <th scope="col" class="col-3">Email</th>
+          <th scope="col" class="col-2">Administrador</th>
+          <th scope="col" class="col-2">Criado em</th>
+          <th scope="col" class="col-2">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <% allUsers.rows.forEach((user) => { %>
+
+          <tr>
+            <th scope="row"><%= user.id %></th>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>
+
+              <% if (user.isAdministrator) { %>
+
+                <i class="fa-solid fa-thumbs-up"></i>
+
+              <% } else { %>
+
+                <i class="fa-solid fa-thumbs-down"></i>
+
+              <% } %>
+
+            </td>
+            <td><%= user.createdAt.toLocaleDateString('pt-BR'); %></td>
+            <td>
+  
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-sm btn-success" style="border-radius: 0;"><i class="fa-solid fa-eye"></i></button>
+                <button type="button" class="btn btn-sm btn-warning" style="border-radius: 0;"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" class="btn btn-sm btn-danger" style="border-radius: 0;"><i class="fa-solid fa-trash"></i></button>
+              </div>
+  
+            </td>
+          </tr>
+
+        <% }); %>
+
+      </tbody>
+    </table>
+
+  </div>
+
+ </div>
+
+<%- include('./partials/footer'); %>
