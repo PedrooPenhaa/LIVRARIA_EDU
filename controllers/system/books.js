@@ -7,9 +7,24 @@ const Cart = require('../../models/Cart');
 const Users = require('../../models/Users');
 const Transactions = require(`../../models/Transactions`);
 
+const nodemailer = require('nodemailer');
+
 const MercadoPago = require('mercadopago');
 
 const isAuthenticated = require('../../middlewares/isAuthenticated');
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: 'SEU EMAIL',
+    pass: 'SUA SENHA',
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+});
 
 router.get('/book/:id', async (req, res) => {
   const session = req.session.user;
@@ -221,7 +236,7 @@ router.post('/checkout', isAuthenticated, (req, res) => {
       console.log(error);
       res.redirect('/');
     });
-    
+
   }).catch((error) => {
     console.log(error);
     res.redirect('/');
@@ -242,16 +257,25 @@ router.post('/not', (req, res) => {
       const payment = data.body.results[0];
 
       if (payment != undefined && payment.status === 'approved') {
-        
+
         await res.send('ok');
         await Transactions.update({ status: payment.status }, { where: { orderId: payment.external_reference } });
-        
+        const userData = await Users.findOne({ where: { id: Number(payment.external_reference.split('-')[0]) } });
+
+        const mailOptions = {
+          from: 'bomliivro@gmail.com', // sender address
+          to: userData.email, // receiver (use array of string for a list)
+          subject: 'Compra efetuada!', // Subject line
+          html: ``// plain text body
+        };
+
         Transactions.findOne({ where: { orderId: payment.external_reference } }).then((transaction) => {
 
           transaction.books.books.forEach((myBook) => {
 
             Bookcase.create({ bookId: myBook, ownerId: Number(payment.external_reference.split('-')[0]) }).then(() => {
 
+              mailOptions.html += `livro de id ${myBook} foi adicionado em sua conta! <br>`;
               console.log(`user ${Number(payment.external_reference.split('-')[0])} recebeu o livro ${myBook}`);
 
             }).catch((error) => {
@@ -263,6 +287,28 @@ router.post('/not', (req, res) => {
         }).catch((error) => {
           console.log(error);
         });
+
+
+        console.log(mailOptions);
+        setTimeout(() => {
+
+          console.log(mailOptions);
+
+          transporter.sendMail(mailOptions, (err, info) => {
+
+            if (err) {
+
+              console.log(err);
+
+            } else {
+
+              console.log(info);
+
+            }
+
+          });
+
+        }, 30000);
 
 
       }

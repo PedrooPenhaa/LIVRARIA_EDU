@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const connection = new Sequelize('lira', 'root', 'senha123', {
+const connection = new Sequelize('SEU BANCO DE DADOS', 'root', 'SUA SENHA', {
 
     host: 'localhost',
     dialect: 'mysql',

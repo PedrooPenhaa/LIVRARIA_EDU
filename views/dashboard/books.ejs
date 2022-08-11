@@ -36,17 +36,60 @@
             <td><%= book.title %></td>
             <td><%= book.author %></td>
             <td><strong>R$ </strong> <%= String(book.valuee).replace('.', ',') %></td>
-            <td><b>x</b>und.</td>
+            <td><b>
+
+              <% let total = 0; %>
+
+              <% bookcase.forEach((booky) => { %>
+
+                <% if (booky.bookId == book.id) { %>
+
+                  <% total += 1 %>
+
+                <% } %>
+
+              <% }) %>
+
+              <%= total %>
+
+            </b>und.</td>
             <td>
   
               <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-sm btn-success" style="border-radius: 0;"><i class="fa-solid fa-eye"></i></button>
-                <button type="button" class="btn btn-sm btn-warning" style="border-radius: 0;"><i class="fa-solid fa-pen"></i></button>
-                <button type="button" class="btn btn-sm btn-danger" style="border-radius: 0;"><i class="fa-solid fa-trash"></i></button>
+                <a href="/book/2" type="button" class="btn btn-sm btn-success" style="border-radius: 0;"><i class="fa-solid fa-eye"></i></a>
+                <a href="/dashboard/book/edit/<%= book.id %>" type="button" class="btn btn-sm btn-warning" style="border-radius: 0;"><i class="fa-solid fa-pen"></i></a>
+                <button data-toggle="modal" data-target="#delete<%= book.id %>" type="button" class="btn btn-sm btn-danger" style="border-radius: 0;"><i class="fa-solid fa-trash"></i></button>
               </div>
   
             </td>
           </tr>
+
+          <!-- Modal -->
+          <div class="modal fade" id="delete<%= book.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Apagar <%= book.id %></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Fala meu chegado(a), tem certeza que quer apagar o livro <%= book.title %>?!
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Não Apagar</button>
+                  
+                  <form method="POST" action="/dashboard/book/delete/<%= book.id %>">
+
+                    <button type="submit" class="btn btn-danger">Apagar</button>
+
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
 
         <% }); %>
 

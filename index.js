@@ -42,19 +42,20 @@ app.use('/', dashBooksController);
 app.use('/', dashMembersController);
 
 MercadoPago.configure({
-  sandbox: true, 
-  access_token: ''
+  sandbox: true,
+  access_token: 'SEU TOKEN'
 });
 
+
 connection.authenticate().then(() => {
-  
+
   console.log('Conectei com Banco de Dados!');
 
-  app.listen(8080, (error) => {
+  app.listen(80, (error) => {
 
     if (!error) {
 
-      console.log('Servidor rodando na porta 8080!');
+      console.log('Servidor rodando na porta 8080 junto ao SMTP!');
 
     } else {
       console.log(error);
